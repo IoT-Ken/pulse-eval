@@ -29,9 +29,9 @@ PRESSURE=$(/usr/bin/python /opt/sensehat/pressure.py)
 UP=$(uptime -p | sed -e 's/ /-/g' | sed -e 's/,-/,/g')
 
 # Utilize DefaultClient to send SenseHat Metrics and Gateway Uptime to Pulse
-sudo ${AGENTBINPATH}DefaultClient send-metric --device-id=$SENSEHATID --name=Temperature --type=double --value=$SENSEHATTEMP
-sudo ${AGENTBINPATH}DefaultClient send-metric --device-id=$SENSEHATID --name=Humidity --type=double --value=$SENSEHATHUMIDITY
-sudo ${AGENTBINPATH}DefaultClient send-metric --device-id=$SENSEHATID --name=BarometricPressure --type=double --value=$SENSEHATPRESSURE
+sudo ${AGENTBINPATH}DefaultClient send-metric --device-id=$SENSEHATID --name=Temperature --type=double --value=$TEMP
+sudo ${AGENTBINPATH}DefaultClient send-metric --device-id=$SENSEHATID --name=Humidity --type=double --value=$HUMIDITY
+sudo ${AGENTBINPATH}DefaultClient send-metric --device-id=$SENSEHATID --name=BarometricPressure --type=double --value=$PRESSURE
 sudo ${AGENTBINPATH}DefaultClient send-properties --device-id=$GATEWAYID --key=uptime --value=$UP
 
 # Configure While Loop Interval
