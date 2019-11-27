@@ -12,9 +12,8 @@
 # Last Updated: 26-Nov-19
 # Purpose: Used to gather and send SenseHAT Metrics to Pulse
 
-# Declare Path Variables
+# Declare Path Variable for Pulse Agent bin folder
 AGENTBINPATH="/opt/vmware/iotc-agent/bin/"
-AGENTDATAPATH="/opt/vmware/iotc-agent/data/data/"
 
 # Retrieve Gateway and SenseHat ID Values
 GATEWAYID=$(${AGENTBINPATH}DefaultClient get-devices | sed -n 2p | awk '{print $1}')
@@ -22,9 +21,9 @@ SENSEHATID=$(${AGENTBINPATH}DefaultClient get-devices | sed -n 3p | awk '{print 
 
 while true; do
 # Set and Retrieve Python return variables for Temperature, Humidity and Barometric Pressure
-TEMP=$(/usr/bin/python3 /opt/sensehat/temperature.py)
-HUMIDITY=$(/usr/bin/python3 /opt/sensehat/humidity.py)
-PRESSURE=$(/usr/bin/python3 /opt/sensehat/pressure.py)
+TEMP=$(/usr/bin/python /opt/sensehat/temperature.py)
+HUMIDITY=$(/usr/bin/python /opt/sensehat/humidity.py)
+PRESSURE=$(/usr/bin/python /opt/sensehat/pressure.py)
 
 # Retrieve Uptime Value
 UP=$(uptime -p | sed -e 's/ /-/g' | sed -e 's/,-/,/g')
